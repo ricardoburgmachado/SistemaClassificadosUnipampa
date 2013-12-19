@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+	
+                
+    <mvc:resources mapping="/recursos/**" 
+                   location="/recursos/"
+                   cache-period="0"/>
+    
+    
+   
+    
+    <mvc:annotation-driven />
+    <context:annotation-config />
+    
+    <context:component-scan
+        base-package="br.com.controller"/>
+    
+    <context:component-scan
+        base-package="br.com.dao"/>
+    
+    <context:component-scan
+        base-package="br.com.model"/>
+    
+    <context:component-scan
+        base-package="br.com.repositorio"/>
+    
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix">
+            <value>/view/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    
+
+    <!-- Habilitando upload de arquivos -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="50000000"/>
+    </bean>
+ 
+    
+    
+ 
+</beans>
